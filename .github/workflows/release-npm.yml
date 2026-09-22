@@ -202,8 +202,19 @@ jobs:
           # hook (`napi prepublish`) that would otherwise fire on `npm publish` and
           # try to cut a GitHub release + re-publish the platform packages itself.
           # We publish explicitly here, so skip lifecycle scripts entirely.
+          # A per-platform package that is already on the registry at this exact
+          # version is skipped (a re-run of the same tag). Every other failure is
+          # fatal: the previous `|| true` swallowed auth, packaging and provenance
+          # errors too, so the root package could publish while pointing at
+          # optionalDependencies that were never uploaded.
           for dir in npm/*/; do
-            ( cd "$dir" && npm publish --ignore-scripts --access public --provenance || true )
+            name=$(node -p "require('./${dir}package.json').name")
+            version=$(node -p "require('./${dir}package.json').version")
+            if npm view "${name}@${version}" version >/dev/null 2>&1; then
+              echo "${name}@${version} already published, skipping"
+            else
+              ( cd "$dir" && npm publish --ignore-scripts --access public --provenance )
+            fi
           done
           # ...then the main package that depends on them.
           npm publish --ignore-scripts --access public --provenance

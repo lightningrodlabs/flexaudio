@@ -1,9 +1,10 @@
 # @lightningrodlabs/flexaudio
 
 > **Fork.** This is `lightningrodlabs/flexaudio`, published to npm as
-> `@lightningrodlabs/flexaudio` while upstream's npm publication is blocked.
-> Changes over upstream `e36ca9f`: libpulse pid resolution (upstream PR #TBD),
-> `excludePids` (upstream PR #TBD), the real-PipeWire smoke job. Once upstream
+> `@lightningrodlabs/flexaudio` (from this branch's release workflow) while
+> upstream's npm publication is blocked. Changes over upstream `e36ca9f`:
+> libpulse pid resolution, `excludePids`, the real-PipeWire smoke job —
+> upstream PRs pending (numbers recorded here once opened). Once upstream
 > publishes with both merged, Moss switches back and this fork is archived.
 
 Native **N-API** bindings that let Node.js / TypeScript / Electron capture audio

@@ -22,9 +22,10 @@ then.
 | **PyPI** | ✅ published | Wheels (Linux x64/arm64, macOS arm64, Windows x64) + sdist. |
 | **npm** | ⏳ **pending** | Blocked by an npm-side bug — see below. Re-run `release-npm.yml` to finish. |
 
-Prebuilt binaries cover Linux x64/arm64, macOS arm64 (Apple Silicon), and
-Windows x64. macOS x64 (Intel) is intentionally not prebuilt — Intel Mac Rust
-users still build from source via crates.io.
+Prebuilt npm binaries follow `release-npm.yml`'s build matrix, which now covers
+Linux x64/arm64, macOS arm64 (Apple Silicon) **and x64 (Intel)**, and Windows
+x64 **and arm64** — six targets. (The PyPI wheel set in the table above is the
+0.2.0 snapshot and is narrower.)
 
 ## npm is not published yet — how to finish it
 
@@ -58,6 +59,21 @@ above). Fork releases are versioned `<upstream-version>-lrl.N` — e.g.
 `0.3.0-lrl.1` is the first fork release built from upstream's unreleased
 `0.3.0` — so a fork version always sorts after the upstream version it tracks
 and `N` increments for a fork-only respin without waiting on upstream.
+
+**`0.3.0-lrl.N` is a SemVer prerelease — consumers must pin it exactly.** A
+range does not match prereleases: `"^0.3.0"` and `"~0.3.0"` both resolve to
+nothing here. Depend on it as
+
+```json
+"@lightningrodlabs/flexaudio": "0.3.0-lrl.1"
+```
+
+**Dist-tag:** the workflow publishes with a plain `npm publish` and no `--tag`,
+so a fork release lands on **`latest`** for the `@lightningrodlabs/flexaudio`
+package. That is the ruling for this fork — the scope has no other consumers,
+`latest` is what `npm install @lightningrodlabs/flexaudio` resolves to (npm
+follows the dist-tag, not the prerelease-exclusion rule), and a separate `lrl`
+tag would leave `latest` empty. `--tag lrl` is NOT used.
 
 Before tagging a release, validate the workflow with a dry run (builds every
 platform, skips the actual `npm publish`):

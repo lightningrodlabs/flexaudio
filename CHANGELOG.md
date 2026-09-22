@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+> Fork note: this content ships as @lightningrodlabs/flexaudio 0.3.0-lrl.1
+> until upstream releases 0.3.0.
+
 ### Added
 - **`StreamConfig::exclude_pids` / N-API `excludePids`.** System-loopback
   capture can exclude a set of pids in addition to `exclude_self`. Electron
