@@ -35,6 +35,9 @@ permissions:
 
 jobs:
   publish:
+    # Fork guard: a v* tag on lightningrodlabs/flexaudio publishes only npm (see
+    # RELEASING.md); crates.io/PyPI releases stay upstream's.
+    if: github.repository == 'Studio-Sadola/flexaudio'
     name: Publish crates (dependency order)
     runs-on: ubuntu-latest
     env:

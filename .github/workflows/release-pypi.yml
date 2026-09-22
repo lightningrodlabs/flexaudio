@@ -37,6 +37,9 @@ env:
 jobs:
   # --- Linux wheels (manylinux), built inside maturin-action's container ---
   linux:
+    # Fork guard: a v* tag on lightningrodlabs/flexaudio publishes only npm (see
+    # RELEASING.md); crates.io/PyPI releases stay upstream's.
+    if: github.repository == 'Studio-Sadola/flexaudio'
     name: Wheels (manylinux ${{ matrix.target }})
     runs-on: ${{ matrix.runner }}
     strategy:
@@ -141,6 +144,9 @@ jobs:
   # Intel-Mac Rust users can still build from source; re-enable it only with a
   # supported runner and package target.
   macos:
+    # Fork guard: a v* tag on lightningrodlabs/flexaudio publishes only npm (see
+    # RELEASING.md); crates.io/PyPI releases stay upstream's.
+    if: github.repository == 'Studio-Sadola/flexaudio'
     name: Wheels (macOS aarch64)
     runs-on: macos-latest
     strategy:
@@ -162,6 +168,9 @@ jobs:
 
   # --- Windows wheels (x64) ---
   windows:
+    # Fork guard: a v* tag on lightningrodlabs/flexaudio publishes only npm (see
+    # RELEASING.md); crates.io/PyPI releases stay upstream's.
+    if: github.repository == 'Studio-Sadola/flexaudio'
     name: Wheels (Windows x64)
     runs-on: windows-latest
     steps:
@@ -179,6 +188,9 @@ jobs:
 
   # --- Source distribution ---
   sdist:
+    # Fork guard: a v* tag on lightningrodlabs/flexaudio publishes only npm (see
+    # RELEASING.md); crates.io/PyPI releases stay upstream's.
+    if: github.repository == 'Studio-Sadola/flexaudio'
     name: sdist
     runs-on: ubuntu-latest
     steps:
@@ -195,6 +207,9 @@ jobs:
           if-no-files-found: error
 
   publish:
+    # Fork guard: a v* tag on lightningrodlabs/flexaudio publishes only npm (see
+    # RELEASING.md); crates.io/PyPI releases stay upstream's.
+    if: github.repository == 'Studio-Sadola/flexaudio'
     name: Publish to PyPI
     needs: [linux, macos, windows, sdist]
     runs-on: ubuntu-latest
