@@ -68,12 +68,12 @@ nothing here. Depend on it as
 "@lightningrodlabs/flexaudio": "0.3.0-lrl.1"
 ```
 
-**Dist-tag:** the workflow publishes with a plain `npm publish` and no `--tag`,
-so a fork release lands on **`latest`** for the `@lightningrodlabs/flexaudio`
-package. That is the ruling for this fork — the scope has no other consumers,
-`latest` is what `npm install @lightningrodlabs/flexaudio` resolves to (npm
-follows the dist-tag, not the prerelease-exclusion rule), and a separate `lrl`
-tag would leave `latest` empty. `--tag lrl` is NOT used.
+**Dist-tag:** npm refuses to publish a prerelease without an explicit
+`--tag` (the first dry run failed on exactly that), so the workflow passes
+`--tag latest` on every publish. A fork release therefore lands on **`latest`**
+for `@lightningrodlabs/flexaudio` and its platform packages: `npm install
+@lightningrodlabs/flexaudio` resolves to it (npm follows the dist-tag), and a
+separate `lrl` tag would leave `latest` empty. `--tag lrl` is NOT used.
 
 Before tagging a release, validate the workflow with a dry run (builds every
 platform, skips the actual `npm publish`):

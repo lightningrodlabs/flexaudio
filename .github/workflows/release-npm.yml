@@ -213,11 +213,11 @@ jobs:
             if npm view "${name}@${version}" version >/dev/null 2>&1; then
               echo "${name}@${version} already published, skipping"
             else
-              ( cd "$dir" && npm publish --ignore-scripts --access public --provenance )
+              ( cd "$dir" && npm publish --ignore-scripts --access public --provenance --tag latest )
             fi
           done
           # ...then the main package that depends on them.
-          npm publish --ignore-scripts --access public --provenance
+          npm publish --ignore-scripts --access public --provenance --tag latest
 
       - name: Dry run (validate packaging, skip publish)
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
@@ -229,7 +229,7 @@ jobs:
           # loudly so packaging problems are caught here instead of at real publish.
           for dir in npm/*/; do
             echo "::group::dry-run ${dir}"
-            ( cd "$dir" && npm publish --ignore-scripts --dry-run )
+            ( cd "$dir" && npm publish --ignore-scripts --dry-run --tag latest )
             echo "::endgroup::"
           done
-          npm publish --ignore-scripts --dry-run
+          npm publish --ignore-scripts --dry-run --tag latest
