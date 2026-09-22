@@ -1,4 +1,4 @@
-# @studio-sadola/flexaudio
+# @lightningrodlabs/flexaudio
 
 > **Fork.** This is `lightningrodlabs/flexaudio`, published to npm as
 > `@lightningrodlabs/flexaudio` while upstream's npm publication is blocked.
@@ -27,12 +27,12 @@ npm install @lightningrodlabs/flexaudio
 ```
 
 The correct prebuilt native binary for your platform is pulled in automatically
-via the platform-specific `optionalDependencies` (`@studio-sadola/flexaudio-<triple>`).
+via the platform-specific `optionalDependencies` (`@lightningrodlabs/flexaudio-<triple>`).
 
 ## Usage
 
 ```js
-const { devices, openStream } = require('@studio-sadola/flexaudio');
+const { devices, openStream } = require('@lightningrodlabs/flexaudio');
 
 console.log(devices());
 
@@ -62,7 +62,7 @@ can be captured per process. Idle/stopped processes are included; whether
 something is playing now is `isOutputActive`. Pass `pid` as `processId`:
 
 ```js
-const { processes, openStream } = require('@studio-sadola/flexaudio');
+const { processes, openStream } = require('@lightningrodlabs/flexaudio');
 
 const list = await processes();
 // [{ pid: 4242, name: 'Firefox', executable: 'firefox', isOutputActive: true }, …]
@@ -151,7 +151,7 @@ The add-ons work standalone on any `Float32Array` of interleaved samples, and th
 VAD / noise suppression can also be wired into a live `openStream`.
 
 ```js
-const { Vad, Denoiser, FlacEncoder, openStream } = require('@studio-sadola/flexaudio');
+const { Vad, Denoiser, FlacEncoder, openStream } = require('@lightningrodlabs/flexaudio');
 
 // VAD: feed any format; it resamples internally to the VAD rate (16 kHz).
 const vad = new Vad({ threshold: 0.5, minSilenceMs: 100 });
