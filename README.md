@@ -1,5 +1,11 @@
 # flexaudio
 
+> **Fork.** This is `lightningrodlabs/flexaudio`, published to npm as
+> `@lightningrodlabs/flexaudio` while upstream's npm publication is blocked.
+> Changes over upstream `e36ca9f`: libpulse pid resolution (upstream PR #TBD),
+> `excludePids` (upstream PR #TBD), the real-PipeWire smoke job. Once upstream
+> publishes with both merged, Moss switches back and this fork is archived.
+
 **English** | [日本語](README.ja.md)
 
 **General-purpose, flexible, cross-platform audio capture for Rust.**

@@ -1,5 +1,11 @@
 # @studio-sadola/flexaudio
 
+> **Fork.** This is `lightningrodlabs/flexaudio`, published to npm as
+> `@lightningrodlabs/flexaudio` while upstream's npm publication is blocked.
+> Changes over upstream `e36ca9f`: libpulse pid resolution (upstream PR #TBD),
+> `excludePids` (upstream PR #TBD), the real-PipeWire smoke job. Once upstream
+> publishes with both merged, Moss switches back and this fork is archived.
+
 Native **N-API** bindings that let Node.js / TypeScript / Electron capture audio
 through the [flexaudio](https://github.com/Studio-Sadola/flexaudio) Rust library:
 microphone, system output (loopback), and per-process capture on **Linux**,
@@ -17,7 +23,7 @@ offline — no model files to ship, no network at runtime.
 ## Install
 
 ```sh
-npm install @studio-sadola/flexaudio
+npm install @lightningrodlabs/flexaudio
 ```
 
 The correct prebuilt native binary for your platform is pulled in automatically

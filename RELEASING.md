@@ -49,3 +49,30 @@ package at `npmjs.com/package/<name>/access`) for subsequent releases.
 
 Alternatively, the first version can be published interactively from a machine
 with 2FA, using the `.node` binaries produced by the `release-npm.yml` build job.
+
+## lightningrodlabs fork releases
+
+`lightningrodlabs/flexaudio` (this fork) publishes to npm under the
+`@lightningrodlabs` scope while upstream's own npm publication is blocked (see
+above). Fork releases are versioned `<upstream-version>-lrl.N` — e.g.
+`0.3.0-lrl.1` is the first fork release built from upstream's unreleased
+`0.3.0` — so a fork version always sorts after the upstream version it tracks
+and `N` increments for a fork-only respin without waiting on upstream.
+
+Before tagging a release, validate the workflow with a dry run (builds every
+platform, skips the actual `npm publish`):
+
+```bash
+gh workflow run "Release (npm)" --repo lightningrodlabs/flexaudio --ref lightningrodlabs/publish -f dry_run=true
+```
+
+After a real publish, verify the registry directly — never trust the workflow
+log:
+
+```bash
+npm view @lightningrodlabs/flexaudio version
+```
+
+| Version | Date | Notes |
+|---|---|---|
+

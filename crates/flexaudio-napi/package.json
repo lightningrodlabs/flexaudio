@@ -1,6 +1,6 @@
 {
-  "name": "@studio-sadola/flexaudio",
-  "version": "0.3.0",
+  "name": "@lightningrodlabs/flexaudio",
+  "version": "0.3.0-lrl.1",
   "description": "Flexible cross-platform audio capture (microphone, system loopback, per-process) for Node.js, via native N-API bindings to the flexaudio Rust library.",
   "author": "tubome (Studio Sadola)",
   "license": "MIT",
@@ -35,7 +35,8 @@
         "aarch64-unknown-linux-gnu",
         "x86_64-pc-windows-msvc",
         "aarch64-pc-windows-msvc",
-        "aarch64-apple-darwin"
+        "aarch64-apple-darwin",
+        "x86_64-apple-darwin"
       ]
     }
   },
@@ -43,11 +44,12 @@
     "node": ">= 16"
   },
   "optionalDependencies": {
-    "@studio-sadola/flexaudio-linux-x64-gnu": "0.3.0",
-    "@studio-sadola/flexaudio-linux-arm64-gnu": "0.3.0",
-    "@studio-sadola/flexaudio-win32-x64-msvc": "0.3.0",
-    "@studio-sadola/flexaudio-win32-arm64-msvc": "0.3.0",
-    "@studio-sadola/flexaudio-darwin-arm64": "0.3.0"
+    "@lightningrodlabs/flexaudio-linux-x64-gnu": "0.3.0-lrl.1",
+    "@lightningrodlabs/flexaudio-linux-arm64-gnu": "0.3.0-lrl.1",
+    "@lightningrodlabs/flexaudio-win32-x64-msvc": "0.3.0-lrl.1",
+    "@lightningrodlabs/flexaudio-win32-arm64-msvc": "0.3.0-lrl.1",
+    "@lightningrodlabs/flexaudio-darwin-arm64": "0.3.0-lrl.1",
+    "@lightningrodlabs/flexaudio-darwin-x64": "0.3.0-lrl.1"
   },
   "scripts": {
     "artifacts": "napi artifacts",

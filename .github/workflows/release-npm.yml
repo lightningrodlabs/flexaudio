@@ -1,12 +1,12 @@
 # Build the napi-rs native addon for every supported platform and publish the
-# npm packages (the main `@studio-sadola/flexaudio` package plus one per-platform
+# npm packages (the main `@lightningrodlabs/flexaudio` package plus one per-platform
 # optional package, the standard napi-rs distribution model).
 #
 # === What the maintainer must set up ===
 #  - Add a repository secret named NPM_TOKEN
 #    (Settings → Secrets and variables → Actions → New repository secret).
-#    Create an automation token at https://www.npmjs.com/settings/<user>/tokens
-#    with publish rights to the `@studio-sadola` scope.
+#    Create a granular access token at https://www.npmjs.com/settings/<user>/tokens
+#    with publish rights to the `@lightningrodlabs` scope.
 #  - Packages are published with `--access public` and `--provenance`. Provenance
 #    needs a public repository and `id-token: write` (both set below); it signs
 #    the packages with a verifiable link back to this workflow run.
@@ -46,12 +46,11 @@ jobs:
       # Matrix of host runner + Rust target triple.
       #
       # Covered: linux x64, linux arm64 (native on a hosted arm64 runner),
-      # macOS arm64, windows x64. This matches the napi "triples" /
+      # macOS arm64, macOS x64, windows x64. This matches the napi "triples" /
       # optionalDependencies in package.json.
       #
-      # macOS x64 (Intel) is deliberately left out of the prebuilt package matrix.
-      # Rust users on Intel Macs can still build from crates.io. Re-enable it only
-      # together with a supported runner and package target.
+      # macOS x64 (Intel) is cross-compiled from the arm64 `macos-latest`
+      # runner (napi-rs / Xcode's clang handle the cross-link).
       #
       # Windows on arm64 has no hosted runner, but napi-rs cross-compiles it
       # cleanly from the x64 Windows runner (VS ships the ARM64 toolchain).
@@ -63,6 +62,8 @@ jobs:
             target: aarch64-unknown-linux-gnu
           - runner: macos-latest
             target: aarch64-apple-darwin
+          - runner: macos-latest
+            target: x86_64-apple-darwin
           - runner: windows-latest
             target: x86_64-pc-windows-msvc
           - runner: windows-latest
