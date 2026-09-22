@@ -79,7 +79,7 @@ Before tagging a release, validate the workflow with a dry run (builds every
 platform, skips the actual `npm publish`):
 
 ```bash
-gh workflow run "Release (npm)" --repo lightningrodlabs/flexaudio --ref lightningrodlabs/publish -f dry_run=true
+gh workflow run "Release (npm)" --repo lightningrodlabs/flexaudio --ref main -f dry_run=true
 ```
 
 After a real publish, verify the registry directly — never trust the workflow
@@ -91,4 +91,5 @@ npm view @lightningrodlabs/flexaudio version
 
 | Version | Date | Notes |
 |---|---|---|
+| 0.3.0-lrl.1 | 2026-09-22 | First fork release: libpulse pid resolution, `excludePids`, fan-in completeness fix, darwin x64 added. Source `27e2d19` (tag `v0.3.0-lrl.1`). Published MANUALLY from a maintainer machine (`npm publish --tag latest` per package, OTP each) after dry run 35781012733 built all six platforms — the workflow's publish step was not exercised for real. Registry verified: root + six platform packages at `0.3.0-lrl.1`, `dist-tags.latest` set; `npm install @lightningrodlabs/flexaudio@0.3.0-lrl.1` in a scratch project loads on linux-x64. |
 
